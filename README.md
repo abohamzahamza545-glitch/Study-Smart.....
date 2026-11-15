@@ -1,564 +1,649 @@
->ط
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#4210a5">
-<title>StudySmart - تطبيق الدراسة الذكي</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4211a5">
+<title>StudySmart</title>
 
 <style>
+:root{
+--purple:#4211a5;
+--blue:#078ff4;
+--gold:#ffca19;
+--cream:#fff8e9;
+}
 *{box-sizing:border-box}
 body{
- margin:0;
- font-family:Tahoma,Arial,sans-serif;
- background:linear-gradient(145deg,#d7edff,#e9d8ff);
- color:#29105f;
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+background:linear-gradient(145deg,#25076d,#078cf1);
+color:#28105c
 }
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-.header{
- background:linear-gradient(100deg,#300078,#671bd0);
- color:white;
- border-bottom:8px solid #ffca20;
- padding:17px 12px;
- text-align:center;
+.wrap{width:min(100%,760px);margin:auto;padding:12px}
+.brand{
+text-align:center;color:white;
+font-size:40px;font-weight:bold;margin:8px
 }
-.header h1{font-size:35px;margin:0}
-.header h1 span{color:#ffca20}
-.header p{margin:5px 0 0}
-.container{max-width:850px;margin:auto;padding:13px}
+.brand span{color:var(--gold)}
 .panel{
- background:#fffaf0;
- border:4px solid #ffcb27;
- border-radius:23px;
- padding:20px;
- margin:15px 0;
- box-shadow:0 5px 15px #27105b25;
+background:var(--cream);
+border:5px solid var(--gold);
+border-radius:24px;
+padding:18px;
+box-shadow:0 8px 24px #16004455
 }
-h2{text-align:center;color:#48109d}
-input,select,textarea{
- display:block;width:100%;padding:13px;
- margin:10px 0;border:2px solid #d9c7f4;
- border-radius:12px;background:white;
+.panel h1,.panel h2{text-align:center;color:var(--purple)}
+.login-logo{
+display:flex;justify-content:center;margin:10px
 }
-textarea{min-height:100px;resize:vertical}
+.login-logo img{
+width:125px;height:125px;
+object-fit:contain;border-radius:25px;
+border:3px solid var(--gold)
+}
+.app-brand{
+display:flex;align-items:center;
+justify-content:center;gap:10px
+}
+.app-brand img{
+width:55px;height:55px;object-fit:contain
+}
+.field{margin:12px 0}
+.field label{display:block;font-weight:bold;margin-bottom:6px}
+.field input,.field select{
+width:100%;padding:13px;
+border:2px solid #d8c6f5;
+border-radius:12px;background:white
+}
 .primary{
- background:linear-gradient(100deg,#4710a5,#087be8);
- color:white;border:0;border-radius:13px;
- padding:14px;font-weight:bold;width:100%;
+background:linear-gradient(100deg,var(--purple),var(--blue));
+color:white;border:0;border-radius:13px;
+padding:13px 18px;font-weight:bold
 }
-.secondary{
- background:#eee5ff;color:#42109b;
- border:2px solid #cbb3f5;border-radius:12px;
- padding:11px;font-weight:bold;
-}
+.wide{width:100%;margin-top:12px}
 .hidden{display:none!important}
-.welcome{
- background:linear-gradient(100deg,#44109c,#761bd2);
- color:white;border-radius:16px;
- padding:14px;margin-bottom:14px;
- text-align:center;
+.muted,.small{font-size:12px;line-height:1.7;color:#655777}
+.dash{
+position:relative;width:100%;
+overflow:hidden;border-radius:14px;
+background:white;line-height:0
 }
-.welcome strong{color:#ffda32}
-.hero{
- background:linear-gradient(120deg,#087ce9,#32d4ef);
- border:5px solid #ffca20;
- border-radius:22px;padding:18px 12px;
- text-align:center;color:white;
- margin-bottom:15px;
+.dash img{display:block;width:100%;height:auto}
+.hot{
+position:absolute;border:2px solid transparent;
+background:transparent;border-radius:16px;
+padding:0;z-index:2
 }
-.hero .girl{font-size:65px}
-.hero h2{color:white;font-size:28px;margin:5px}
-.hero p{margin:5px}
-.grid{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:12px;
+.hot:focus-visible{
+outline:4px solid white;
+background:#ffffff30
 }
-.tile{
- border:3px solid white;
- border-radius:20px;
- min-height:137px;
- padding:12px 6px;
- text-align:center;
- color:#27105f;
- box-shadow:0 4px 9px #32105b25;
- display:flex;flex-direction:column;
- align-items:center;justify-content:center;
- gap:7px;font-weight:bold;
+/* أماكن الأزرار فوق صورة لوحة التحكم */
+#h-ai{left:47.5%;top:13.2%;width:16.5%;height:14.5%}
+#h-lessons{left:64.5%;top:13.2%;width:16%;height:14.5%}
+#h-quiz{left:47.5%;top:28.8%;width:16.5%;height:14.3%}
+#h-class{left:64.5%;top:28.8%;width:16%;height:14.3%}
+#h-homework{left:47.5%;top:43.5%;width:16.5%;height:14.3%}
+#h-grades{left:64.5%;top:43.5%;width:16%;height:14.3%}
+#h-reports{left:47.5%;top:58%;width:16.5%;height:14.3%}
+#h-monthly{left:64.5%;top:58%;width:16%;height:14.3%}
+#h-settings{left:1%;top:90%;width:20%;height:9%}
+#h-support{left:22%;top:90%;width:19%;height:9%}
+#h-home{left:42%;top:88%;width:18%;height:11%}
+#h-stats{left:61%;top:90%;width:18%;height:9%}
+#h-parent{left:80%;top:90%;width:19%;height:9%}
+
+.menu{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:9px;margin-top:12px
 }
-.tile .emoji{font-size:43px}
-.tile span:last-child{font-size:15px}
-.purple{background:linear-gradient(#e6caff,#a65cff)}
-.blue{background:linear-gradient(#d2f4ff,#45b6ff)}
-.green{background:linear-gradient(#e1ffc4,#8ce448)}
-.orange{background:linear-gradient(#fff0b6,#ffb52c)}
-.pink{background:linear-gradient(#ffd5ed,#ff83c5)}
-.cyan{background:linear-gradient(#d4ffff,#55d9db)}
-.bottom{
- display:grid;grid-template-columns:repeat(5,1fr);
- gap:3px;background:#4b0eae;
- padding:8px;border-radius:18px;
- margin-top:15px;
+.menu button{
+border:2px solid #e6d7ff;
+border-radius:14px;padding:13px 8px;
+background:linear-gradient(145deg,#fff,#f0e8ff);
+color:var(--purple);font-weight:bold;
+min-height:60px
 }
-.bottom button{
- background:transparent;color:white;border:0;
- padding:9px 2px;font-size:12px;
-}
-.bottom b{display:block;font-size:24px;margin-bottom:5px}
-.bottom button.active{
- background:#ffca20;color:#32106d;
- border-radius:13px;
-}
-.section{
- background:white;border:3px solid #e3d5ff;
- border-radius:17px;padding:16px;margin:12px 0;
-}
-.section h3{color:#4b0eae}
+.footer{text-align:center;color:white;font-size:12px;padding:14px}
 .modal{
- display:none;position:fixed;inset:0;
- background:#14052bd9;z-index:20;
- padding:12px;align-items:center;justify-content:center;
+position:fixed;inset:0;background:#10052ddd;
+z-index:20;display:none;
+align-items:center;justify-content:center;padding:12px
 }
 .modal.show{display:flex}
 .dialog{
- background:#fffaf0;border:4px solid #ffca20;
- border-radius:22px;padding:17px;
- width:100%;max-width:600px;
- max-height:92vh;overflow:auto;
+width:min(100%,560px);max-height:92vh;
+overflow:auto;background:white;
+border:5px solid var(--gold);
+border-radius:22px;padding:16px
 }
 .dialog h2{
- background:#4b0eae;color:white;
- border-radius:13px;padding:12px;
+background:linear-gradient(100deg,var(--purple),var(--blue));
+color:white;padding:12px;border-radius:12px;
+text-align:center
 }
-.close{background:#eee;color:#48109d;border:0;
- padding:9px 14px;border-radius:10px;float:left}
-.answer{background:#eee5ff;padding:12px;border-radius:12px;margin-top:12px}
-.book-frame{width:100%;height:60vh;border:0}
-.small{font-size:12px;color:#66557e}
-.stat{background:#f0e5ff;padding:12px;border-radius:12px;margin:8px 0}
-footer{text-align:center;color:#51348b;padding:20px}
-@media(max-width:390px){
- .grid{gap:8px}
- .tile{min-height:120px}
- .bottom button{font-size:10px}
+.close{
+float:left;border:0;border-radius:10px;
+padding:8px 12px;color:var(--purple);
+background:#eee5ff
 }
+.tile,.question{
+background:#f4efff;border:1px solid #ddcefa;
+border-radius:13px;padding:12px;margin:10px 0;
+line-height:1.8
+}
+.dialog input,.dialog textarea{
+width:100%;padding:11px;
+border:1px solid #c9b7eb;border-radius:10px;margin:6px 0
+}
+.dialog iframe{width:100%;height:65vh;border:1px solid #ddd}
+.action{
+border:0;border-radius:10px;padding:10px 14px;
+background:var(--purple);color:white;margin:4px
+}
+.secondary{
+border:0;border-radius:10px;padding:10px 14px;
+background:#eae2fa;color:var(--purple);margin:4px
+}
+.answer{display:block;margin:8px 0}
+.answer input{width:auto!important}
+a{color:#174cbb}
 </style>
 </head>
 
 <body>
+<main class="wrap">
 
-<header class="header">
- <h1>Study<span>Smart</span></h1>
- <p>Your Smart Learning Companion</p>
-</header>
+<div class="app-brand">
+<img src="assets/app-icon.png" alt="StudySmart">
+<div class="brand">Study<span>Smart</span></div>
+</div>
 
-<main class="container">
+<p style="text-align:center;color:white">
+Your Smart Learning Companion
+</p>
 
-<!-- صفحة التسجيل -->
+<!-- تسجيل الطالب -->
 <section id="register" class="panel">
- <div class="hero">
-  <div class="girl">🏆📚</div>
-  <h2>أهلاً بك في StudySmart</h2>
-  <p>تعلم بذكاء.. حقق نجاحك</p>
- </div>
 
- <h2>تسجيل الطالب</h2>
- <form id="registerForm">
-  <label>اسم الطالب</label>
-  <input id="studentName" required placeholder="اكتب اسم الطالب">
+<div class="login-logo">
+<img src="assets/app-icon.png" alt="StudySmart">
+</div>
 
-  <label>رقم هاتف ولي الأمر</label>
-  <input id="parentPhone" required type="tel" placeholder="رقم الهاتف">
+<h1>أهلاً بك في StudySmart</h1>
+<p style="text-align:center">تعلم بذكاء.. حقق نجاحك</p>
 
-  <label>المرحلة الدراسية</label>
-  <select id="studentGrade" required>
-   <option value="">اختر الصف الدراسي</option>
-   <option>الصف الأول الثانوي</option>
-   <option>الصف الثاني الثانوي</option>
-   <option>الصف الثالث الثانوي</option>
-  </select>
+<form id="loginForm">
 
-  <button class="primary" type="submit">دخول التطبيق 🚀</button>
- </form>
+<div class="field">
+<label>اسم الطالب</label>
+<input id="student" required maxlength="60" placeholder="اسم الطالب">
+</div>
+
+<div class="field">
+<label>رقم هاتف ولي الأمر</label>
+<input id="guardian" type="tel" required placeholder="رقم ولي الأمر">
+</div>
+
+<div class="field">
+<label>الصف الدراسي</label>
+<select id="grade" required>
+<option value="">اختاري الصف</option>
+<option>أولى ثانوي</option>
+<option>ثانية ثانوي</option>
+<option>ثالثة ثانوي</option>
+</select>
+</div>
+
+<button class="primary wide" type="submit">
+دخول التطبيق 🚀
+</button>
+
+</form>
+<p class="muted">نسخة تجريبية للعرض.</p>
 </section>
 
 <!-- لوحة التحكم -->
-<section id="dashboard" class="hidden">
+<section id="app" class="hidden">
 
- <div class="welcome">
-  <strong id="welcomeName">مرحباً بك</strong>
-  <div id="welcomeGrade"></div>
-  <div>معاً نحو التفوق والنجاح ⭐</div>
- </div>
+<div class="dash">
 
- <div class="hero">
-  <div class="girl">👩🏻‍🎓🏆📖</div>
-  <h2>StudySmart</h2>
-  <p>Your Smart Learning Companion</p>
-  <h3 style="color:white">تعلم بذكاء.. حقق نجاحك</h3>
- </div>
+<img src="assets/dashboard.png"
+alt="لوحة تحكم StudySmart"
+onerror="this.alt='تعذر تحميل صورة لوحة التحكم'">
 
- <div class="grid">
+<button class="hot" id="h-ai" aria-label="المعلم الذكي"
+onclick="openSection('ai')"></button>
 
-  <button class="tile purple" onclick="openSection('ai')">
-   <span class="emoji">🤖</span>
-   <span>المعلم الذكي AI</span>
-  </button>
+<button class="hot" id="h-lessons" aria-label="شرح الدروس"
+onclick="openSection('lessons')"></button>
 
-  <button class="tile blue" onclick="openSection('lessons')">
-   <span class="emoji">📖</span>
-   <span>شرح الدروس وكتب الوزارة</span>
-  </button>
+<button class="hot" id="h-quiz" aria-label="الاختبارات"
+onclick="openSection('quiz')"></button>
 
-  <button class="tile green" onclick="openSection('quiz')">
-   <span class="emoji">📝</span>
-   <span>الأسئلة والاختبارات</span>
-  </button>
+<button class="hot" id="h-class" aria-label="الأداءات الصفية"
+onclick="openSection('classwork')"></button>
 
-  <button class="tile orange" onclick="openSection('classwork')">
-   <span class="emoji">🏅</span>
-   <span>الأداءات الصفية</span>
-  </button>
+<button class="hot" id="h-homework" aria-label="الأداءات المنزلية"
+onclick="openSection('homework')"></button>
 
-  <button class="tile cyan" onclick="openSection('homework')">
-   <span class="emoji">🏠</span>
-   <span>الأداءات المنزلية</span>
-  </button>
+<button class="hot" id="h-grades" aria-label="التقييمات"
+onclick="openSection('grades')"></button>
 
-  <button class="tile pink" onclick="openSection('grades')">
-   <span class="emoji">🏆</span>
-   <span>التقييمات</span>
-  </button>
+<button class="hot" id="h-reports" aria-label="التقارير"
+onclick="openSection('reports')"></button>
 
-  <button class="tile green" onclick="openSection('reports')">
-   <span class="emoji">📊</span>
-   <span>التقارير والنتائج</span>
-  </button>
+<button class="hot" id="h-monthly" aria-label="الاختبار الشهري"
+onclick="openSection('monthly')"></button>
 
-  <button class="tile purple" onclick="openSection('monthly')">
-   <span class="emoji">🗓️</span>
-   <span>الاختبار الشهري</span>
-  </button>
+<button class="hot" id="h-settings" aria-label="الإعدادات"
+onclick="openSection('settings')"></button>
 
- </div>
+<button class="hot" id="h-support" aria-label="الدعم"
+onclick="openSection('support')"></button>
 
- <div class="bottom">
-  <button onclick="openSection('settings')"><b>⚙️</b>الإعدادات</button>
-  <button onclick="openSection('support')"><b>🎧</b>الدعم الفني</button>
-  <button class="active" onclick="goHome()"><b>🏠</b>الرئيسية</button>
-  <button onclick="openSection('statistics')"><b>📈</b>إحصائياتي</button>
-  <button onclick="openSection('parent')"><b>👤</b>ولي الأمر</button>
- </div>
+<button class="hot" id="h-home" aria-label="الرئيسية"
+onclick="openSection('home')"></button>
+
+<button class="hot" id="h-stats" aria-label="الإحصائيات"
+onclick="openSection('stats')"></button>
+
+<button class="hot" id="h-parent" aria-label="ولي الأمر"
+onclick="openSection('parent')"></button>
+
+</div>
+
+<!-- أزرار بديلة تضمن سهولة فتح الأقسام -->
+<div class="menu">
+<button onclick="openSection('ai')">🤖 المعلم الذكي AI</button>
+<button onclick="openSection('lessons')">📖 كتب الوزارة</button>
+<button onclick="openSection('quiz')">📝 الأسئلة والاختبارات</button>
+<button onclick="openSection('classwork')">🏅 الأداءات الصفية</button>
+<button onclick="openSection('homework')">🏠 الأداءات المنزلية</button>
+<button onclick="openSection('grades')">🏆 التقييمات</button>
+<button onclick="openSection('reports')">📊 التقارير والنتائج</button>
+<button onclick="openSection('monthly')">🗓️ الاختبار الشهري</button>
+<button onclick="openSection('stats')">📈 إحصائياتي</button>
+<button onclick="openSection('parent')">👨‍👩‍👧 حساب ولي الأمر</button>
+<button onclick="openSection('support')">🎧 الدعم الفني</button>
+<button onclick="openSection('settings')">⚙️ الإعدادات</button>
+</div>
+
+<p class="footer">
+StudySmart - كتاب البرمجة والذكاء الاصطناعي
+للصف الأول الثانوي
+</p>
 
 </section>
 </main>
 
 <!-- نافذة الأقسام -->
-<div class="modal" id="modal">
- <div class="dialog">
-  <button class="close" onclick="closeSection()">إغلاق ✕</button>
-  <h2 id="modalTitle">StudySmart</h2>
-  <div id="modalContent"></div>
- </div>
+<div id="modal" class="modal">
+<div class="dialog">
+<button class="close" onclick="closeModal()">إغلاق ✕</button>
+<h2 id="modalTitle"></h2>
+<div id="modalBody"></div>
+</div>
 </div>
 
-<footer>StudySmart © 2026</footer>
-
 <script>
-let student="";
-let phone="";
-let grade="";
-let attempts=0;
-let correctTotal=0;
-let currentScore=0;
-let savedTasks=[];
-let bookURL="";
+'use strict';
 
+let profile={name:'',phone:'',grade:''};
+let score=0,attempts=0;
 const $=id=>document.getElementById(id);
 
-$("registerForm").addEventListener("submit",function(e){
- e.preventDefault();
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({
+'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[c]));
 
- student=$("studentName").value.trim();
- phone=$("parentPhone").value.trim();
- grade=$("studentGrade").value;
+$("loginForm").addEventListener("submit",function(e){
+e.preventDefault();
 
- if(!student||!phone||!grade){
-  alert("من فضلك أكمل جميع البيانات");
-  return;
- }
+const name=$("student").value.trim();
+const phone=$("guardian").value.trim();
+const grade=$("grade").value;
 
- $("welcomeName").textContent="مرحباً يا "+student+" 👋";
- $("welcomeGrade").textContent=grade;
+if(!name||!phone||!grade){
+alert("من فضلك أكملي البيانات");
+return;
+}
 
- $("register").classList.add("hidden");
- $("dashboard").classList.remove("hidden");
+profile={name,phone,grade};
 
- window.scrollTo(0,0);
+$("register").classList.add("hidden");
+$("app").classList.remove("hidden");
+
+window.scrollTo(0,0);
 });
 
-function goHome(){
- $("modal").classList.remove("show");
- $("dashboard").classList.remove("hidden");
- window.scrollTo(0,0);
+const titles={
+ai:'المعلم الذكي AI',
+lessons:'شرح الدروس وكتب الوزارة',
+quiz:'الأسئلة والاختبارات',
+classwork:'الأداءات الصفية',
+homework:'الأداءات المنزلية',
+grades:'التقييمات',
+reports:'التقارير والنتائج',
+monthly:'الاختبار الشهري',
+settings:'الإعدادات',
+support:'الدعم الفني',
+home:'الرئيسية',
+stats:'إحصائياتي',
+parent:'حساب ولي الأمر'
+};
+
+function show(title,html){
+$("modalTitle").textContent=title;
+$("modalBody").innerHTML=html;
+$("modal").classList.add("show");
 }
 
-function openSection(page){
- $("dashboard").classList.add("hidden");
- $("modal").classList.add("show");
-
- let title="";
- let content="";
-
- if(page==="ai"){
-  title="🤖 المعلم الذكي";
-  content=`
-   <p>أهلاً يا ${escapeHTML(student)}! اسألني عن دروسك.</p>
-   <textarea id="aiQuestion" placeholder="اكتب سؤالك هنا..."></textarea>
-   <button class="primary" onclick="askTeacher()">إرسال السؤال</button>
-   <button class="secondary" onclick="startVoice()">🎙️ تحدث بالصوت</button>
-   <div class="answer" id="aiAnswer">المعلم الذكي - نسخة تجريبية</div>
-   <p class="small">للحصول على إجابات تعليمية حقيقية من الذكاء الاصطناعي يلزم ربط خدمة AI.</p>
-  `;
- }
-
- else if(page==="lessons"){
-  title="📚 كتب الوزارة وشرح الدروس";
-  content=`
-   <div class="section">
-    <h3>كتاب الوزارة</h3>
-    <p>الصف الحالي: ${escapeHTML(grade)}</p>
-    <label>اختاري ملف الكتاب PDF من جهازك:</label>
-    <input type="file" id="bookFile" accept=".pdf,application/pdf" onchange="loadBook(this)">
-    <div id="bookStatus" class="answer">لم يتم اختيار كتاب بعد.</div>
-    <button class="secondary" onclick="showBook()">فتح الكتاب 📖</button>
-   </div>
-   <div class="section">
-    <h3>شرح الدروس</h3>
-    <p>يمكن إضافة شرح كل درس وأسئلته بعد إدخال محتوى الكتاب.</p>
-   </div>
-  `;
- }
-
- else if(page==="quiz"||page==="monthly"||page==="grades"){
-  title=page==="monthly"?"🗓️ الاختبار الشهري":
-        page==="grades"?"🏆 التقييمات":"📝 الأسئلة والاختبارات";
-
-  content=`
-   <p>اختبار تدريبي تجريبي</p>
-   <div class="section">
-    <b>1- ما المقصود بالبيانات؟</b>
-    <label><input type="radio" name="q1" value="1"> حقائق وأرقام ورموز</label>
-    <label><input type="radio" name="q1" value="0"> نتائج نهائية فقط</label>
-    <label><input type="radio" name="q1" value="0"> لا شيء مما سبق</label>
-   </div>
-   <div class="section">
-    <b>2- ما فائدة المعلومات؟</b>
-    <label><input type="radio" name="q2" value="1"> المساعدة على الفهم واتخاذ القرار</label>
-    <label><input type="radio" name="q2" value="0"> منع التعلم</label>
-    <label><input type="radio" name="q2" value="0"> ليس لها فائدة</label>
-   </div>
-   <div class="section">
-    <b>3- ما الذي يساعد على التعلم؟</b>
-    <label><input type="radio" name="q3" value="1"> القراءة والتدريب</label>
-    <label><input type="radio" name="q3" value="0"> عدم المراجعة</label>
-   </div>
-   <button class="primary" onclick="correctQuiz()">تصحيح الاختبار</button>
-   <div class="answer" id="quizResult">أجب عن الأسئلة ثم اضغط تصحيح.</div>
-   <p class="small">أسئلة توضيحية تجريبية وليست أسئلة وزارية رسمية.</p>
-  `;
- }
-
- else if(page==="classwork"||page==="homework"){
-  title=page==="classwork"?"🏅 الأداءات الصفية":"🏠 الأداءات المنزلية";
-  content=`
-   <div class="section">
-    <h3>النشاط الأول</h3>
-    <p>اشرح الفرق بين البيانات والمعلومات بأسلوبك.</p>
-    <textarea id="taskAnswer" placeholder="اكتب إجابتك هنا..."></textarea>
-    <button class="primary" onclick="saveTask()">حفظ الإجابة</button>
-    <div id="taskStatus"></div>
-   </div>
-   <div class="section">
-    <h3>نشاط إضافي</h3>
-    <p>اكتب ثلاثة أمثلة على استخدام التكنولوجيا في التعليم.</p>
-    <textarea id="taskExtra" placeholder="اكتب إجابتك..."></textarea>
-   </div>
-  `;
- }
-
- else if(page==="reports"||page==="statistics"){
-  title="📊 التقارير والإحصائيات";
-  content=`
-   <div class="stat">اسم الطالب: ${escapeHTML(student)}</div>
-   <div class="stat">الصف: ${escapeHTML(grade)}</div>
-   <div class="stat">عدد الاختبارات: ${attempts}</div>
-   <div class="stat">مجموع الإجابات الصحيحة: ${correctTotal}</div>
-   <div class="stat">الإجابات المحفوظة: ${savedTasks.length}</div>
-   <p>هذه إحصائيات جلسة العرض الحالية.</p>
-  `;
- }
-
- else if(page==="parent"){
-  title="👨‍👩‍👧 حساب ولي الأمر";
-  content=`
-   <div class="section">
-    <h3>بيانات الطالب</h3>
-    <p>اسم الطالب: ${escapeHTML(student)}</p>
-    <p>الصف: ${escapeHTML(grade)}</p>
-    <p>رقم ولي الأمر: ${escapeHTML(phone)}</p>
-   </div>
-   <div class="section">
-    <h3>متابعة المستوى</h3>
-    <p>عدد الاختبارات: ${attempts}</p>
-    <p>الإجابات الصحيحة: ${correctTotal}</p>
-   </div>
-   <p class="small">هذه شاشة عرض تجريبية. لا يوجد إرسال تقارير أو رسائل فعلية لولي الأمر بعد.</p>
-  `;
- }
-
- else if(page==="settings"){
-  title="⚙️ الإعدادات";
-  content=`
-   <div class="section">
-    <p>مرحباً ${escapeHTML(student)}</p>
-    <button class="secondary" onclick="logout()">تسجيل الخروج</button>
-   </div>
-  `;
- }
-
- else if(page==="support"){
-  title="🎧 الدعم الفني";
-  content=`
-   <p>اكتب استفسارك أو ملاحظتك:</p>
-   <textarea id="supportMessage" placeholder="اكتب رسالتك هنا"></textarea>
-   <button class="primary" onclick="sendSupport()">حفظ الرسالة التجريبية</button>
-   <div id="supportStatus"></div>
-  `;
- }
-
- $("modalTitle").textContent=title;
- $("modalContent").innerHTML=content;
+function closeModal(){
+$("modal").classList.remove("show");
 }
 
-function closeSection(){
- $("modal").classList.remove("show");
- $("dashboard").classList.remove("hidden");
+function openSection(id){
+let html='';
+
+if(id==='lessons'){
+html=profile.grade==='أولى ثانوي'?
+`
+<div class="tile">
+<h3>كتاب الوزارة</h3>
+<p>
+البرمجة والذكاء الاصطناعي<br>
+مقدمة في تكنولوجيا المعلومات والاتصالات<br>
+الصف الأول الثانوي 2025–2026
+</p>
+<button class="primary" onclick="showBook()">
+📖 فتح الكتاب كاملًا
+</button>
+<p>
+<a href="books/book.pdf" target="_blank">
+فتح الكتاب في نافذة جديدة
+</a>
+</p>
+</div>
+`:
+`<div class="tile">
+الكتاب المتاح حاليًا هو كتاب الصف الأول الثانوي فقط.
+</div>`;
 }
 
-function logout(){
- $("modal").classList.remove("show");
- $("dashboard").classList.add("hidden");
- $("register").classList.remove("hidden");
- $("registerForm").reset();
- window.scrollTo(0,0);
+if(['quiz','grades','monthly'].includes(id)){
+html=profile.grade==='أولى ثانوي'?
+`
+<p>تقييم تدريبي من درس المعلومات والوسائط.</p>
+
+<div class="question">
+<b>1- البيانات (Data) هي:</b>
+<label class="answer">
+<input type="radio" name="q1" value="a">
+حقائق تُمثل بالأرقام أو الأحرف أو الرموز
+</label>
+<label class="answer">
+<input type="radio" name="q1" value="b">
+معلومات تم تحليلها وتنظيمها
+</label>
+</div>
+
+<div class="question">
+<b>2- المعلومات (Information) هي:</b>
+<label class="answer">
+<input type="radio" name="q2" value="a">
+معنى أو قيمة للمتلقي وتستخدم لاتخاذ القرار
+</label>
+<label class="answer">
+<input type="radio" name="q2" value="b">
+وسيلة لتخزين الملفات فقط
+</label>
+</div>
+
+<div class="question">
+<b>3- المعرفة (Knowledge) هي:</b>
+<label class="answer">
+<input type="radio" name="q3" value="a">
+معلومات تم تحليلها وتنظيمها للمساعدة في حل المشكلات
+</label>
+<label class="answer">
+<input type="radio" name="q3" value="b">
+حقائق غير منظمة
+</label>
+</div>
+
+<div class="question">
+<b>4- أي مما يلي ليس من خصائص المعلومات؟</b>
+<label class="answer">
+<input type="radio" name="q4" value="a"> الاستمرارية
+</label>
+<label class="answer">
+<input type="radio" name="q4" value="b"> قابلية التكرار
+</label>
+<label class="answer">
+<input type="radio" name="q4" value="c"> أن لها شكلاً مادياً ثابتاً
+</label>
+<label class="answer">
+<input type="radio" name="q4" value="d"> الانتشار
+</label>
+</div>
+
+<div class="question">
+<b>5- التلفزيون يصنف ضمن:</b>
+<label class="answer">
+<input type="radio" name="q5" value="a"> وسائط التعبير
+</label>
+<label class="answer">
+<input type="radio" name="q5" value="b"> وسائط النقل والإرسال
+</label>
+<label class="answer">
+<input type="radio" name="q5" value="c"> وسائط التسجيل
+</label>
+</div>
+
+<div class="question">
+<b>6- الثقافة الإعلامية هي القدرة على:</b>
+<label class="answer">
+<input type="radio" name="q6" value="a">
+تفسير المعلومات التي تم الحصول عليها من الوسائط بدقة
+</label>
+<label class="answer">
+<input type="radio" name="q6" value="b">
+تخزين كل المعلومات على الهاتف
+</label>
+</div>
+
+<button class="primary" onclick="gradeQuiz()">
+تصحيح التقييم
+</button>
+
+<div id="quizResult" class="tile">
+اختاري الإجابات ثم اضغطي تصحيح.
+</div>
+
+<p class="small">
+أسئلة تدريبية من محتوى الصفحتين 8 و9،
+وليست تقييمًا وزاريًا رسميًا.
+</p>
+`:
+`<div class="tile">
+الكتاب المتاح حاليًا للصف الأول الثانوي فقط.
+</div>`;
 }
 
-function escapeHTML(s){
- return String(s).replace(/[&<>"']/g,function(c){
-  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
- });
+if(id==='ai'){
+html=`
+<p>أهلاً ${safe(profile.name)}! اسألي عن دروسك.</p>
+<textarea id="ask" rows="3" placeholder="اكتبي سؤالك"></textarea>
+<button class="action" onclick="answerDemo()">إرسال السؤال</button>
+<button class="secondary" onclick="listenQuestion()">🎙️ تحدثي بالسؤال</button>
+<div id="aiAnswer" class="tile">
+المعلم الذكي - نسخة تجريبية.
+</div>
+`;
 }
 
-function loadBook(input){
- const file=input.files[0];
- if(!file)return;
+if(id==='classwork'||id==='homework'){
+html=`
+<p>نشاط من درس المعلومات والوسائط.</p>
+<div class="tile">
+اشرحي الفرق بين البيانات والمعلومات والمعرفة.
+</div>
+<textarea id="workAnswer" rows="4" placeholder="اكتبي إجابتك"></textarea>
+<button class="primary" onclick="saveWork()">حفظ الإجابة</button>
+<div id="workStatus"></div>
+`;
+}
 
- if(file.type!=="application/pdf"){
-  alert("من فضلك اختاري ملف PDF");
-  return;
- }
+if(id==='reports'||id==='stats'){
+html=`
+<div class="tile">
+اسم الطالب: ${safe(profile.name)}<br>
+الصف: ${safe(profile.grade)}<br>
+عدد الاختبارات: ${attempts}<br>
+مجموع الإجابات الصحيحة: ${score}
+</div>
+`;
+}
 
- if(bookURL)URL.revokeObjectURL(bookURL);
- bookURL=URL.createObjectURL(file);
- $("bookStatus").textContent="تم اختيار الكتاب: "+file.name;
+if(id==='parent'){
+html=`
+<div class="tile">
+اسم الطالب: ${safe(profile.name)}<br>
+الصف: ${safe(profile.grade)}<br>
+رقم ولي الأمر: ${safe(profile.phone)}
+</div>
+<p class="small">
+حساب ولي الأمر في هذه النسخة شاشة عرض تجريبية.
+</p>
+`;
+}
+
+if(id==='settings'){
+html=`
+<div class="tile">إعدادات الحساب التجريبي</div>
+<button class="secondary" onclick="location.reload()">
+تسجيل الخروج
+</button>
+`;
+}
+
+if(id==='support'){
+html=`
+<p>الدعم الفني</p>
+<textarea id="supportMsg" rows="3" placeholder="اكتبي ملاحظتك"></textarea>
+<button class="primary" onclick="sendSupport()">إرسال</button>
+<div id="supportStatus"></div>
+`;
+}
+
+if(id==='home'){
+html=`<div class="tile">أهلاً ${safe(profile.name)} في StudySmart!</div>`;
+}
+
+show(titles[id]||'StudySmart',html);
 }
 
 function showBook(){
- if(!bookURL){
-  alert("اختاري كتاب PDF أولاً");
-  return;
- }
- $("modalContent").innerHTML=`
-  <button class="secondary" onclick="openSection('lessons')">العودة</button>
-  <iframe class="book-frame" src="${bookURL}"></iframe>
- `;
+show('كتاب الوزارة — البرمجة والذكاء الاصطناعي',`
+<p>الصف الأول الثانوي - 2025–2026</p>
+<iframe
+title="كتاب الوزارة PDF"
+src="books/book.pdf">
+</iframe>
+<p>
+<a href="books/book.pdf" target="_blank">
+فتح الكتاب في نافذة جديدة
+</a>
+</p>
+`);
 }
 
-function correctQuiz(){
- let score=0;
- for(let i=1;i<=3;i++){
-  const selected=document.querySelector('input[name="q'+i+'"]:checked');
-  if(!selected){
-   $("quizResult").textContent="من فضلك أجب عن جميع الأسئلة.";
-   return;
-  }
-  score+=Number(selected.value);
- }
- attempts++;
- currentScore=score;
- correctTotal+=score;
- $("quizResult").textContent="نتيجتك: "+score+" من 3 ⭐";
+function gradeQuiz(){
+const keys=['q1','q2','q3','q4','q5','q6'];
+const correct={q1:'a',q2:'a',q3:'a',q4:'c',q5:'b',q6:'a'};
+
+const values=keys.map(k=>
+document.querySelector('input[name="'+k+'"]:checked')
+);
+
+if(values.some(v=>!v)){
+$("quizResult").textContent="أجيبي عن الأسئلة الستة أولاً.";
+return;
 }
 
-function saveTask(){
- const value=$("taskAnswer").value.trim();
- if(!value){
-  $("taskStatus").textContent="اكتب إجابتك أولاً.";
-  return;
- }
- savedTasks.push(value);
- $("taskStatus").textContent="تم حفظ الإجابة في جلسة العرض بنجاح.";
+const result=values.reduce((n,v,i)=>
+n+(v.value===correct[keys[i]]?1:0),0);
+
+score+=result;
+attempts++;
+
+$("quizResult").textContent=
+"درجتك "+result+" من 6 ⭐ "+
+(result===6?"ممتاز!":"راجعي الدرس وحاولي مرة أخرى.");
 }
 
-function askTeacher(){
- const question=$("aiQuestion").value.trim();
- if(!question){
-  $("aiAnswer").textContent="اكتب سؤالك أولاً.";
-  return;
- }
- const answer="وصل سؤالك: "+question+
- ". هذه نسخة تجريبية من المعلم الذكي. لشرح الدرس والإجابة عن أسئلة الكتاب تلقائياً يجب ربط التطبيق بخدمة ذكاء اصطناعي.";
- $("aiAnswer").textContent=answer;
- speak(answer);
+function answerDemo(){
+const q=$("ask").value.trim();
+if(!q){
+$("aiAnswer").textContent="اكتبي سؤالك أولاً.";
+return;
 }
 
-function startVoice(){
- const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!Recognition){
-  $("aiAnswer").textContent="التعرف على الصوت غير مدعوم في هذا المتصفح. يمكنك كتابة السؤال.";
-  return;
- }
- const recognition=new Recognition();
- recognition.lang="ar-EG";
- recognition.onresult=function(event){
-  $("aiQuestion").value=event.results[0][0].transcript;
- };
- recognition.onerror=function(){
-  $("aiAnswer").textContent="لم نتمكن من التقاط الصوت. حاولي مرة أخرى.";
- };
- recognition.start();
+const answer=
+"وفقًا لدرس المعلومات والوسائط: البيانات حقائق تُمثل بالأرقام أو الأحرف أو الرموز. المعلومات لها معنى أو قيمة للمتلقي وتساعد على اتخاذ القرار. المعرفة معلومات تم تحليلها وتنظيمها للمساعدة في حل المشكلات.";
+
+$("aiAnswer").textContent=answer;
+speak(answer);
+}
+
+function listenQuestion(){
+const R=window.SpeechRecognition||window.webkitSpeechRecognition;
+
+if(!R){
+$("aiAnswer").textContent="التعرف الصوتي غير مدعوم في هذا المتصفح.";
+return;
+}
+
+const r=new R();
+r.lang="ar-EG";
+r.onresult=e=>{
+$("ask").value=e.results[0][0].transcript;
+};
+r.start();
 }
 
 function speak(text){
- if(!("speechSynthesis" in window))return;
- speechSynthesis.cancel();
- const utterance=new SpeechSynthesisUtterance(text);
- utterance.lang="ar-EG";
- speechSynthesis.speak(utterance);
+if('speechSynthesis' in window){
+speechSynthesis.cancel();
+const u=new SpeechSynthesisUtterance(text);
+u.lang='ar-EG';
+speechSynthesis.speak(u);
+}
+}
+
+function saveWork(){
+const value=$("workAnswer").value.trim();
+$("workStatus").textContent=value?
+"تم حفظ الإجابة في جلسة العرض.":
+"اكتبي الإجابة أولاً.";
 }
 
 function sendSupport(){
- const message=$("supportMessage").value.trim();
- if(!message){
-  $("supportStatus").textContent="اكتبي الرسالة أولاً.";
-  return;
- }
- $("supportStatus").textContent="تم تسجيل الرسالة في العرض التجريبي.";
+const value=$("supportMsg").value.trim();
+$("supportStatus").textContent=value?
+"تم تسجيل الملاحظة في العرض التجريبي.":
+"اكتبي الملاحظة أولاً.";
 }
-</script>
 
+$("modal").addEventListener("click",e=>{
+if(e.target===$("modal"))closeModal();
+});
+</script>
 </body>
 </html>
